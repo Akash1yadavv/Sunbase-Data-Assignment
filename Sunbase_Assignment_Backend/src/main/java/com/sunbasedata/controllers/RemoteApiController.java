@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sunbasedata.services.RemoteApiService;
 
 @RestController
-@RequestMapping("/customers") 
+@RequestMapping("/api/sunbasedata") 
 public class RemoteApiController {
 
 	@Autowired RemoteApiService remoteApiService;

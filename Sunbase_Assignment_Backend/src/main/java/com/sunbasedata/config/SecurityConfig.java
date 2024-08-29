@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,9 +31,10 @@ public class SecurityConfig {
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	
 	    http
-	    .csrf(csrf -> csrf.disable())  // Disable CSRF protection
+	    .csrf(csrf -> csrf.disable())
+	    .cors(Customizer.withDefaults())
 	    .authorizeHttpRequests(auth -> auth
-	        .requestMatchers("/auth/**").permitAll()
+	        .requestMatchers("/api/auth/**").permitAll()
 	        .requestMatchers("/swagger-ui*/**", "/v3/api-docs/**").permitAll()
 	        .anyRequest().hasRole("ADMIN")
 	    )
@@ -45,22 +47,24 @@ public class SecurityConfig {
 	    return http.build();
 	    
 	}   
-
     @Bean
-    CorsConfigurationSource corsConfigurationSource(@Value("${allowedOrigins}") String allowedOriginsString) {
-    	
-    	List<String> allowedOriginsList = Arrays.asList(allowedOriginsString.split(","));
+    public CorsConfigurationSource corsConfigurationSource(@Value("${allowedOrigins}") String allowedOriginsString) {
+        List<String> allowedOriginsList = Arrays.asList(allowedOriginsString.split(","));
+        
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(allowedOriginsList);
-        configuration.setAllowedMethods(Arrays.asList("GET","POST","PATCH", "PUT", "DELETE", "OPTIONS", "HEAD"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS", "HEAD"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Requestor-Type","Content-type","*"));
         configuration.setExposedHeaders(Arrays.asList("*","X-Get-Header"));
         configuration.setMaxAge(3600L);
+        
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+        
         return source;
     }
-    
+
+
  
 }

@@ -33,7 +33,6 @@ public class Customer implements UserDetails{
 	@Column(unique = true)
 	@NotEmpty  @NotNull
     private String uuid;
-	
 	private String firstName;
 	private String lastName;
 	private String street;

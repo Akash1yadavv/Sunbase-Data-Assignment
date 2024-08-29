@@ -1,10 +1,9 @@
 package com.sunbasedata.controllers;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,51 +25,60 @@ import jakarta.validation.Valid;
 
 
 @RestController
-@RequestMapping("/customers") 
+@RequestMapping("/api/sunbasedata") 
 public class CustomerController {
 
     @Autowired private CustomerService customerService;
 
-    @PostMapping("/register")
+    @PostMapping("/register-customer")
     public ResponseEntity<Customer> register(@Valid @RequestBody CustomerReqDto customerReqDto) {
         Customer registeredCustomer = customerService.registerCustomer(customerReqDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(registeredCustomer);
     }
 
 
-    @PutMapping("/{id}")
+    @PutMapping("/update-customer/{id}")
     public ResponseEntity<Customer> updateCustomer(@PathVariable Integer id, @Valid @RequestBody CustomerReqDto customerDetails) {
         Customer updatedCustomer = customerService.updateCustomer(id, customerDetails);
         return ResponseEntity.ok(updatedCustomer);
     }
 
-    @GetMapping("list_customers")
+    @GetMapping("/customers-list")
     public ResponseEntity<Page<Customer>> getAllCustomers(Pageable pageable) {
         Page<Customer> customers = customerService.getAllCustomers(pageable);
         return ResponseEntity.ok(customers);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/get-customer/{id}")
     public ResponseEntity<Customer> getCustomerById(@PathVariable Integer id) {
         Customer customer = customerService.getCustomerById(id);
         return ResponseEntity.ok(customer);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete-customer/{id}")
     public ResponseEntity<Customer> deleteCustomer(@PathVariable Integer id) {
        Customer customer =  customerService.deleteCustomer(id);
         return ResponseEntity.ok(customer);
     }
 
-    @GetMapping("/search")
+    @GetMapping("/search-customers")
     public ResponseEntity<Page<Customer>> searchCustomers(
-            @RequestParam(required = false) String keyword,
-            Pageable pageable) {
-        Page<Customer> customers = customerService.searchCustomers(keyword, pageable);
+    		@RequestParam(value = "searchTerm", required = false) String searchTerm,
+	        @RequestParam(value = "city", required = false) String city,
+	        @RequestParam(value = "state", required = false) String state,
+	        @RequestParam(value = "email", required = false) String email,
+	        @RequestParam(value = "page", defaultValue = "0") int page,
+	        @RequestParam(value = "size", defaultValue = "10") int size,
+	        @RequestParam(value = "sort", defaultValue = "firstName") String sort,
+	        @RequestParam(value = "dir", defaultValue = "asc") String dir 
+	        ) {
+        
+        Sort.Direction direction = dir.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
+        
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort));
+        
+        Page<Customer> customers = customerService.searchCustomers(searchTerm, city, state, email, pageable);
         return ResponseEntity.ok(customers);
     }
     
-    
-
-
 }

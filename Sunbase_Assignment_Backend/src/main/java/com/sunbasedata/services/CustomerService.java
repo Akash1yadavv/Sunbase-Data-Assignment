@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.sunbasedata.dtos.CustomerReqDto;
+import com.sunbasedata.dtos.CustomerResponseDto;
 import com.sunbasedata.dtos.LoginCustomerDto;
 import com.sunbasedata.exceptions.CustomerException;
 import com.sunbasedata.model.Customer;
@@ -23,6 +24,6 @@ public interface CustomerService {
 	
 	public Page<Customer> getAllCustomers(Pageable pageable)throws CustomerException;
 	
-	public Page<Customer> searchCustomers(String keyword, Pageable pageable) throws CustomerException;
+	public Page<Customer> searchCustomers(String searchTerm, String city, String state, String email, Pageable pageable) throws CustomerException;
 
 }
