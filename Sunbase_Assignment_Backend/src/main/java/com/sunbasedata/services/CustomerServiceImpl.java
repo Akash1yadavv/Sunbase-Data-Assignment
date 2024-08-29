@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.sunbasedata.dtos.CustomerReqDto;
+import com.sunbasedata.dtos.CustomerResponseDto;
 import com.sunbasedata.dtos.LoginCustomerDto;
 import com.sunbasedata.enums.Roles;
 import com.sunbasedata.exceptions.CustomerException;
@@ -76,7 +77,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer deleteCustomer(Integer id) throws CustomerException {
-        Customer customer = customerRepository.findById(id)
+    	Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerException("Customer not found for ID: " + id));
 
         customerRepository.delete(customer);
@@ -112,12 +113,17 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Page<Customer> getAllCustomers(Pageable pageable) throws CustomerException {
+    	CustomerResponseDto crd = new CustomerResponseDto();
         return customerRepository.findAll(pageable);
     }
 
     @Override
-    public Page<Customer> searchCustomers(String keyword, Pageable pageable) throws CustomerException {
-        return customerRepository.findByFirstNameContainingOrLastNameContainingOrEmailContainingOrCityContainingOrPhoneContaining(
-                keyword, keyword, keyword, keyword, keyword, pageable);
+    public Page<Customer> searchCustomers(String searchTerm, String city, String state, String email, Pageable pageable) throws CustomerException {
+    	Page<Customer> customers= customerRepository.searchAndFilterCustomers(searchTerm, city, state, email, pageable);
+        if (customers.isEmpty()) {
+            throw new CustomerException("No customers found matching the given criteria.");
+        }
+        return customers;
     }
+
 }

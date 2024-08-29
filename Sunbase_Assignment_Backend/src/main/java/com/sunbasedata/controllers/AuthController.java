@@ -3,24 +3,20 @@ package com.sunbasedata.controllers;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sunbasedata.dtos.CustomerReqDto;
 import com.sunbasedata.dtos.LoginCustomerDto;
 import com.sunbasedata.dtos.LoginResponseDto;
 import com.sunbasedata.model.Customer;
 import com.sunbasedata.services.CustomerService;
 import com.sunbasedata.services.JwtService;
 
-import jakarta.validation.Valid;
-
 @RestController
-@RequestMapping("/auth") 
+@RequestMapping("/api/auth/sunbasedata") 
 public class AuthController {
 	@Autowired private CustomerService customerService;
     @Autowired private JwtService jwtService;
