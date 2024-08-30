@@ -72,7 +72,7 @@ This Customer Management Application serves as a powerful tool for businesses lo
      ```sh
     Running server on port 8080
     ```
-## NOTE:-  **When the application run at first time then resister an admin with role "ADMIN" Username:- admin@sunbasedata.com & Password:- admin@123** If any admin is not in database
+### NOTE:-  **When the application run at first time then autometically resister an admin with role "ADMIN" Username:- admin@sunbasedata.com & Password:- admin@123** If any admin is not in database
 
 
 ### Frontend 
