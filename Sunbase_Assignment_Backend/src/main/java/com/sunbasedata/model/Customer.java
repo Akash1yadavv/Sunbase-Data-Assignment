@@ -27,7 +27,7 @@ import lombok.Data;
 @Data
 public class Customer implements UserDetails{
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer custId;
 	
 	@Column(unique = true)
