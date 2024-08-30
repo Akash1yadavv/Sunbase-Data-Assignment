@@ -228,8 +228,8 @@ function closeUpdateCustomerPopup() {
 // Update customer details
 async function updateCustomer() {
     const updatedCustomer = {
-        firstName: document.getElementById('updateFirstName').value,
-        lastName: document.getElementById('updateLastName').value,
+        first_name: document.getElementById('updateFirstName').value,
+        last_name: document.getElementById('updateLastName').value,
         street: document.getElementById('updateStreet').value,
         address: document.getElementById('updateAddress').value,
         city: document.getElementById('updateCity').value,
