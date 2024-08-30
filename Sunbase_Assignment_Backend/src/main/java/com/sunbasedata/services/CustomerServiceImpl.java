@@ -71,16 +71,25 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Customer getCustomerById(Integer id) throws CustomerException {
-        return customerRepository.findById(id)
+    	
+    	
+        Customer customer= customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerException("Customer not found for ID: " + id));
+        return customer;
+        
     }
 
     @Override
     public Customer deleteCustomer(Integer id) throws CustomerException {
+    	
     	Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerException("Customer not found for ID: " + id));
 
+    	if(customer.getRole().getName() == Roles.ADMIN){
+    		throw new CustomerException("You can't delete to Admin ");
+    	}
         customerRepository.delete(customer);
+        
         return customer;
     }
 
