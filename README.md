@@ -76,10 +76,12 @@ This Customer Management Application serves as a powerful tool for businesses lo
 
 1. Open the application in your web browser.
 2. Navigate to the login page.
-3. Enter your login credentials. 
-
+3. Enter These login credentials because whenever we run application then Admin credentials stored in database if admin not exist. 
+    ```sh
     User Name:- admin@sunbasedata.com
     Password:- admin@123
+    ```
+    
    
 5. Upon successful login, you will be redirected to the customer list page.
 
