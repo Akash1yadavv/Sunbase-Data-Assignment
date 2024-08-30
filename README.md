@@ -88,7 +88,7 @@ This Customer Management Application serves as a powerful tool for businesses lo
 1. Open the application in your web browser.
 2. Navigate to the login page.
     ```sh
-    https://bespoke-bonbon-96f9b2.netlify.app/
+    https://jovial-dolphin-b5052d.netlify.app/
     ```
 
 3. Enter These login credentials because whenever we run application then Admin credentials stored in database if admin not exist. 
