@@ -4,6 +4,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PagedResourcesAssembler;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -42,7 +45,7 @@ public class CustomerController {
         Customer updatedCustomer = customerService.updateCustomer(id, customerDetails);
         return ResponseEntity.ok(updatedCustomer);
     }
-
+ 
     @GetMapping("/customers-list")
     public ResponseEntity<Page<Customer>> getAllCustomers(Pageable pageable) {
         Page<Customer> customers = customerService.getAllCustomers(pageable);
@@ -62,23 +65,27 @@ public class CustomerController {
     }
 
     @GetMapping("/search-customers")
-    public ResponseEntity<Page<Customer>> searchCustomers(
-    		@RequestParam(value = "searchTerm", required = false) String searchTerm,
-	        @RequestParam(value = "city", required = false) String city,
-	        @RequestParam(value = "state", required = false) String state,
-	        @RequestParam(value = "email", required = false) String email,
-	        @RequestParam(value = "page", defaultValue = "0") int page,
-	        @RequestParam(value = "size", defaultValue = "10") int size,
-	        @RequestParam(value = "sort", defaultValue = "firstName") String sort,
-	        @RequestParam(value = "dir", defaultValue = "asc") String dir 
-	        ) {
-        
-        Sort.Direction direction = dir.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
-        
-        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort));
-        
-        Page<Customer> customers = customerService.searchCustomers(searchTerm, city, state, email, pageable);
-        return ResponseEntity.ok(customers);
-    }
+	public ResponseEntity<PagedModel<EntityModel<Customer>>> searchCustomers(
+	    @RequestParam(value = "searchTerm", required = false) String searchTerm,
+	    @RequestParam(value = "city", required = false) String city,
+	    @RequestParam(value = "state", required = false) String state,
+	    @RequestParam(value = "email", required = false) String email,
+	    @RequestParam(value = "page", defaultValue = "0") int page,
+	    @RequestParam(value = "size", defaultValue = "10") int size,
+	    @RequestParam(value = "sort", defaultValue = "firstName") String sort,
+	    @RequestParam(value = "dir", defaultValue = "asc") String dir,
+	    PagedResourcesAssembler<Customer> assembler) {
+    	
+    	
+	    Sort.Direction direction = dir.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC;
+	    Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sort));
+	    
+	    Page<Customer> customers = customerService.searchCustomers(searchTerm, city, state, email, pageable);
+	    
+	    // Corrected type of pagedModel
+	    PagedModel<EntityModel<Customer>> pagedModel = assembler.toModel(customers);
+	    
+	    return ResponseEntity.ok(pagedModel);
+	}
     
 }

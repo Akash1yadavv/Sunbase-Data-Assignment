@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer List</title>
+    <link rel="stylesheet" href="./styles/customer.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h2>Customers</h2>
+            <nav style="background-color:white;" class="navbar">
+                <div class="navbar-controls">
+                    <button style="background-color: green;" onclick="openRegisterCustomerPopup()">Add Customer</button>
+                    <button style="background-color:rgb(5, 196, 5);" onclick="syncCustomers()">Sync Customers</button>
+                </div>
+                <div class="search-controls">
+                    <div class="search-group">
+                        <select id="searchBy">
+                            <option value="firstName">Search by Name</option>
+                            <option value="city">Search by City</option>
+                            <option value="phone">Search by Phone</option>
+                            <option value="email">Search by Email</option>
+                        </select>
+                        <input type="text" id="searchTerm" placeholder="Search term">
+                        <button onclick="applyFilters()">Search</button>
+                    </div>
+                    <div class="sort-group">
+                        <select id="sortBy">
+                            <option value="firstName">Sort by Name</option>
+                            <option value="city">Sort by City</option>
+                            <option value="email">Sort by Email</option>
+                            <option value="phone">Sort by Phone</option>
+                        </select>
+                        <select id="sortOrder">
+                            <option value="asc">Ascending</option>
+                            <option value="desc">Descending</option>
+                        </select>
+                        <button onclick="applyFilters()">Sort</button>
+                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <table id="customers-table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Street</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="customers"></tbody>
+            </table>
+
+            <div class="pagination-controls">
+                <button id="prevPageButton" onclick="prevPage()">Previous</button>
+                <button id="nextPageButton" onclick="nextPage()">Next</button>
+            </div>
+        </main>
+
+        <!-- Add Customer Popup -->
+        <div id="addCustomerPopup" class="popup">
+            <div class="popup-content">
+                <h3>Add New Customer</h3>
+                <label>First Name:</label>
+                <input type="text" id="newFirstName">
+                <label>Last Name:</label>
+                <input type="text" id="newLastName">
+                <label>Password :</label>
+                <input type="text" id="newPassword">
+                <label>Street:</label>
+                <input type="text" id="newStreet">
+                <label>Address:</label>
+                <input type="text" id="newAddress">
+                <label>City:</label>
+                <input type="text" id="newCity">
+                <label>State:</label>
+                <input type="text" id="newState">
+                <label>Email:</label>
+                <input type="email" id="newEmail">
+                <label>Phone:</label>
+                <input type="tel" id="newPhone">
+                <button style="background-color: green;" onclick="registerCustomer()">Register Customer</button>
+                <button style="background-color:red;" onclick="closeResiterCustomerPopup()">Cancel</button>
+            </div>
+        </div>
+        <!-- update Customer Popup -->
+        <div id="updateCustomerPopup" class="updateCustomerPopup">
+            <div class="update-popup-content">
+                <h3>Update Customer</h3>
+                <label>First Name:</label>
+                <input type="text" id="updateFirstName">
+                <label>Last Name:</label>
+                <input type="text" id="updateLastName">
+                <label>Street:</label>
+                <input type="text" id="updateStreet">
+                <label>Address:</label>
+                <input type="text" id="updateAddress">
+                <label>City:</label>
+                <input type="text" id="updateCity">
+                <label>State:</label>
+                <input type="text" id="updateState">
+                <label>Email:</label>
+                <input type="email" id="updateEmail">
+                <label>Phone:</label>
+                <input type="tel" id="updatePhone">
+                <button style="background-color: green;" onclick="updateCustomer()">Update Customer</button>
+                <button style="background-color:red;" onclick="closeUpdateCustomerPopup()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./scripts/customer.js"></script>
+</body>
+
+</html>
