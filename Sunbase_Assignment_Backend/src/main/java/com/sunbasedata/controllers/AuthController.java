@@ -16,7 +16,7 @@ import com.sunbasedata.services.CustomerService;
 import com.sunbasedata.services.JwtService;
 
 @RestController
-@RequestMapping("/api/auth/sunbasedata") 
+@RequestMapping("/api/sunbasedata/auth") 
 public class AuthController {
 	@Autowired private CustomerService customerService;
     @Autowired private JwtService jwtService;
