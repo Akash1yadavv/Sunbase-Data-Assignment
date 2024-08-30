@@ -65,6 +65,9 @@ This Customer Management Application serves as a powerful tool for businesses lo
     ```sh
     mvn spring-boot:run
     ```
+     ```sh
+    Running server on port 8080
+    ```
 
 ### Frontend 
 
