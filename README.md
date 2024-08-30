@@ -100,14 +100,31 @@ This Customer Management Application serves as a powerful tool for businesses lo
 
 ### Customers
 
-- `GET /api/sunbasedata/customers-list?page=0&size=1&sort=string` - Get all customers 
-- `POST /api/sunbasedata/register-customer` - Add a new customer
-- `GET /api/sunbasedata/search-customers?page=0&size=10&sort=firstName&dir=asc` - Search customers by keyword
-- `DELETE /api/sunbasedata/delete-customer/{id}` - Delete a customer by ID
+- `GET http://localhost:8080/api/sunbasedata/customers-list?page=0&size=1&sort=string` - Get all customers with pageble 
+- `POST http://localhost:8080/api/sunbasedata/register-customer` - Add a new customer
+- `DELETE http://localhost:8080/api/sunbasedata/delete-customer/{id}` - Delete a customer by ID
+### Search and Filter Customers
 
+**Endpoint:** `/search`  
+**Method:** `GET`  
+**Description:** Search and filter customers by various criteria.
+
+**Query Parameters:**
+- `searchTerm`: Filter by name (applies to both first and last name).
+- `city`: Filter by city.
+- `state`: Filter by state.
+- `email`: Filter by email.
+- `page`: Page number (default is 0).
+- `size`: Page size (default is 10).
+- `sort`: Sort by field (default is `first_name`).
+- `dir`: Sort direction (`asc` or `desc`, default is `asc`).
+
+**Example Request:**
+     ``` GET http://localhost:8080/api/sunbasedata/search-customers?page=0&size=10&sort=firstName&dir=asc
+     ```
 ### Sync
 
-- `POST /api/sunbasedata/sync-customers` - Sync customers with the backend
+- `POST http://localhost:8080/api/sunbasedata/sync-customers` - Sync customers with the backend
 
 ## Frontend Functionality
 
