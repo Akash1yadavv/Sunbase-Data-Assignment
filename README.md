@@ -16,20 +16,20 @@ This Customer Management Application serves as a powerful tool for businesses lo
 ## Features
 
 - **Role-Based Authentication**: Supports admin and user roles with appropriate access controls.
-- **Admin Login**: log in securely.
-- **View Customers**: Display a list of all customers.
-- **Add Customer**: Allows admin to create new customer records with role "User".
-- **Edit Customer**: Update existing customer information.
-- **Delete Customer**: Remove customer records.
-- **Search**: Filter customers by various criteria.
-- **Data Synchronization**: Sync customer data with an external API.
+- **Admin & User Login**: admin and user can log in securely.
+- **View Customers**: Display a list of all customers for both Admin and User.
+- **Add Customer**: Allows admin and user to create new customer records with Bydefault role "User".
+- **Edit Customer**:Only Admin can Update existing customer information.
+- **Delete Customer**:Only Admin can Remove customer records.
+- **Search**: Admin and User both can Filter customers by various criteria.
+- **Data Synchronization**: Admin and User both can Sync customer data with an external API.
 
 ## Technologies Used
 
 - **Frontend**: HTML, CSS, JavaScript
 - **Backend**: Spring Boot, Java
 - **Database**: MySQL 
-- **Authentication**: JWT (JSON Web Tokens)
+- **Authentication**: JWT (JSON Web Tokens), Spring Security
 
 ## Installation
 
@@ -72,6 +72,8 @@ This Customer Management Application serves as a powerful tool for businesses lo
      ```sh
     Running server on port 8080
     ```
+## NOTE:-  **When the application run at first time then resister an admin with role "ADMIN" Username:- admin@sunbasedata.com & Password:- admin@123** If any admin is not in database
+
 
 ### Frontend 
 
