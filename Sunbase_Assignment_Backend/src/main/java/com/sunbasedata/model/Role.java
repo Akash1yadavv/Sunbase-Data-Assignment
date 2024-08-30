@@ -13,8 +13,8 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Table(name = "roles")
-@Entity
 @Data
+@Entity
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,24 +24,6 @@ public class Role {
     @Column(unique = true, nullable = false)
     @Enumerated(EnumType.STRING)
     private Roles name;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public Roles getName() {
-		return name;
-	}
-
-	public void setName(Roles name) {
-		this.name = name;
-	}
-    
-    
 }
 
 

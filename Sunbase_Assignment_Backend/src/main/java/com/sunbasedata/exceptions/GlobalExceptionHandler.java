@@ -27,7 +27,6 @@ public class GlobalExceptionHandler {
 	
     @ExceptionHandler(Exception.class)
     public ResponseEntity<CustomErrorDetails> handleException(Exception ex, WebRequest req) {
-//        log.error("Exception occurred", ex);  // Using logger to log the exception details
         CustomErrorDetails err = new CustomErrorDetails();
         err.setTimestamp(LocalDateTime.now());
         err.setMessage("Something went wrong.");
@@ -88,11 +87,11 @@ public class GlobalExceptionHandler {
     public ResponseEntity<CustomErrorDetails> exceptionHandler(AccessDeniedException ex,WebRequest req){
         CustomErrorDetails err = new CustomErrorDetails();
         err.setTimestamp(LocalDateTime.now());
-        err.setMessage(ex.getMessage());
+        err.setMessage("You do not have permission to access this resource");
         err.setDetails(req.getDescription(false));
         return new ResponseEntity<CustomErrorDetails>(err, HttpStatus.FORBIDDEN);
     }
-    
+
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<CustomErrorDetails> exceptionHandler(NoHandlerFoundException ex,WebRequest req){
         CustomErrorDetails err = new CustomErrorDetails();

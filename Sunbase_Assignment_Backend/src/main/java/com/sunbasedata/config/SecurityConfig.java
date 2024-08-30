@@ -36,6 +36,8 @@ public class SecurityConfig {
 	    .authorizeHttpRequests(auth -> auth
 	        .requestMatchers("/api/sunbasedata/auth/**").permitAll()
 	        .requestMatchers("/swagger-ui*/**", "/v3/api-docs/**").permitAll()
+	        .requestMatchers("/api/sunbasedata/get-customer/**", "/api/sunbasedata/search-customers/**").hasAnyRole("USER","ADMIN")
+	        .requestMatchers("/api/sunbasedata/customers-list/**", "/api/sunbasedata/register-customer/**").hasAnyRole("USER","ADMIN")
 	        .anyRequest().hasRole("ADMIN")
 	    )
 	    .sessionManagement(session -> session
@@ -53,7 +55,7 @@ public class SecurityConfig {
         
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(allowedOriginsList);
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS", "HEAD"));
+        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PATCH", "PUT", "DELETE"));
         configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList("Authorization", "Requestor-Type","Content-type","*"));
         configuration.setExposedHeaders(Arrays.asList("*","X-Get-Header"));
