@@ -1,6 +1,7 @@
 # Customer Management Application Overview
 
-This Customer Management Application serves as a powerful tool for businesses looking to efficiently manage customer data with secure access and seamless integration capabilities. The use of modern technologies like Spring Boot, MySQL, and JWT authentication, coupled with a user-friendly frontend built with HTML/CSS/JavaScript, makes it a comprehensive solution for any organization aiming to enhance its customer relationship management processes and synchronization feature to fetch and update customer data from an external remote API using RestTemplate.
+This Customer Management Application serves as a powerful tool for businesses looking to efficiently manage customer data with secure access and seamless integration capabilities. The application utilizes modern technologies such as **Spring Boot**, **MySQL**, and **JWT authentication**, along with a user-friendly frontend built using **HTML/CSS/JavaScript**. This makes it a comprehensive solution for organizations aiming to enhance their customer relationship management processes. It also includes a synchronization feature to fetch and update customer data from an external remote API using **RestTemplate**.
+
 
 ## Table of Contents
 
@@ -14,11 +15,14 @@ This Customer Management Application serves as a powerful tool for businesses lo
 
 ## Features
 
-- User authentication with JWT tokens and session expired after one hour
-- Add, edit, delete customer records
-- Search customer records
-- Sync customer records from remote api
-- Responsive design
+- **Role-Based Authentication**: Supports admin and user roles with appropriate access controls.
+- **Admin Login**: log in securely.
+- **View Customers**: Display a list of all customers.
+- **Add Customer**: Allows admin to create new customer records with role "User".
+- **Edit Customer**: Update existing customer information.
+- **Delete Customer**: Remove customer records.
+- **Search**: Filter customers by various criteria.
+- **Data Synchronization**: Sync customer data with an external API.
 
 ## Technologies Used
 
@@ -146,4 +150,25 @@ This Customer Management Application serves as a powerful tool for businesses lo
 
 ## Images
 
+## Screenshots
+
+### Admin :-login
+
+![logo](https://github.com/Akash1yadavv/Sunbase-Data-Assignment/blob/main/images/Login_Page.png)
+
+### Customer list 
+
+![logo](https://github.com/Akash1yadavv/Sunbase-Data-Assignment/blob/main/images/customer_list_page.png)
+
+### Add Customer
+
+![logo](https://github.com/Akash1yadavv/Sunbase-Data-Assignment/blob/main/images/Register_Cutomer_Page.png)
+
+### update
+
+![logo](https://github.com/Akash1yadavv/Sunbase-Data-Assignment/blob/main/images/Update_customer_page.png)
+
+### Database schema
+
+![logo](https://github.com/Akash1yadavv/Sunbase-Data-Assignment/blob/main/images/Database_Schema.png)
 
