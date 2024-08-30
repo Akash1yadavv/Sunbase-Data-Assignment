@@ -49,18 +49,22 @@ This Customer Management Application serves as a powerful tool for businesses lo
     ```
 
 2. Navigate to the backend directory:
-
     ```sh
     cd Sunbase_Assignment_Backend
     ```
+3. Run the command for creation database on mysql command line
 
-3. Build the project with Maven:
+    ```sh
+    "create database sunbase"
+    ```
+
+4. Build the project with Maven:
 
     ```sh
     mvn clean install
     ```
 
-4. Run the application:
+5. Run the application:
 
     ```sh
     mvn spring-boot:run
@@ -83,6 +87,10 @@ This Customer Management Application serves as a powerful tool for businesses lo
 
 1. Open the application in your web browser.
 2. Navigate to the login page.
+    ```sh
+    https://bespoke-bonbon-96f9b2.netlify.app/
+    ```
+
 3. Enter These login credentials because whenever we run application then Admin credentials stored in database if admin not exist. 
     ```sh
     User Name:- admin@sunbasedata.com
